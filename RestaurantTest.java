@@ -69,4 +69,42 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void calculating_final_price_for_selected_items_should_display_correct_amount(){
+        LocalTime openingTime = LocalTime.parse("10:30:00");
+        LocalTime closingTime = LocalTime.parse("22:00:00");
+        restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        restaurant.addToMenu("Sweet Corn Soup",150);
+        restaurant.addToMenu("Chicken Soup",220);
+        restaurant.addToMenu("Mushroom Soup",153);
+        restaurant.addToMenu("Tomato Soup",87);
+
+        //selected items
+        Item item1 = new Item("Mushroom Soup",153);
+        restaurant.addItemListToMenu(item1);
+        Item item2 = new Item("Tomato Soup",87);
+        restaurant.addItemListToMenu(item2);
+
+        int totalPrice = item1.getPrice() + item2.getPrice();
+        Assertions.assertEquals(totalPrice,restaurant.findTotalPrice());
+    }
+    @Test
+    public void calculating_final_price_for_selected_items_should_display_incorrect_amount(){
+        LocalTime openingTime = LocalTime.parse("10:30:00");
+        LocalTime closingTime = LocalTime.parse("22:00:00");
+        restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        restaurant.addToMenu("Sweet Corn Soup",150);
+        restaurant.addToMenu("Chicken Soup",220);
+        restaurant.addToMenu("Mushroom Soup",153);
+        restaurant.addToMenu("Tomato Soup",87);
+
+        //selected items
+        Item item1 = new Item("Mushroom Soup",153);
+        restaurant.addItemListToMenu(item1);
+        Item item2 = new Item("Tomato Soup",87);
+        restaurant.addItemListToMenu(item2);
+
+        int totalPrice = 100; //test data
+        Assertions.assertEquals(totalPrice,restaurant.findTotalPrice());
+    }
 }
