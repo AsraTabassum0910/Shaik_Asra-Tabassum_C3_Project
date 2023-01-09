@@ -14,6 +14,7 @@ class RestaurantTest {
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
+        //WRITE UNIT TEST CASE HERE
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
         restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
@@ -23,10 +24,12 @@ class RestaurantTest {
 
     @Test
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time(){
+        //WRITE UNIT TEST CASE HERE
         LocalTime openingTime = LocalTime.parse("11:00:00");
         LocalTime closingTime = LocalTime.parse("18:00:00");
         restaurant =new Restaurant("Asra Cafe","Chennai",openingTime,closingTime);
         Assertions.assertEquals(false,restaurant.isRestaurantOpen());
+
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

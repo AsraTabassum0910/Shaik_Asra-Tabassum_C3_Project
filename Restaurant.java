@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,12 +10,16 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    private List<Item> selectedItems = new ArrayList<Item>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
         this.location = location;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
+    }
+    public Restaurant(){
+
     }
 
     public boolean isRestaurantOpen() {
@@ -26,9 +31,14 @@ public class Restaurant {
         return false;
     }
 
+
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
+        //List<Item> m1 = new ArrayList<Item>();
+        //for(Item item: menu) {
+          // System.out.println(item.toString());
+        //}
         return menu;
     }
 
@@ -39,10 +49,21 @@ public class Restaurant {
         }
         return null;
     }
+    public int findTotalPrice(){
+        int totalPrice = 0;
+        for(Item item: selectedItems) {
+            totalPrice = totalPrice + item.getPrice();
+        }
+        return totalPrice;
+    }
 
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
         menu.add(newItem);
+    }
+    public void addItemListToMenu(Item newItem) {
+        //Item newItem = new Item(name,price);
+        selectedItems.add(newItem);
     }
     
     public void removeFromMenu(String itemName) throws itemNotFoundException {
